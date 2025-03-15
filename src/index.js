@@ -17,7 +17,16 @@ function getFormData(target) {
 
 function displayData(data) {
   const locationName = document.getElementById('locationName');
+  const temperature = document.getElementById('temperature');
+  const feelsLike = document.getElementById('feelsLike');
+  const humidity = document.getElementById('humidity');
+  const wind = document.getElementById('wind');
+
   locationName.textContent = data.address;
+  temperature.textContent = `Temperature: ${data.currentConditions.temp}°C`;
+  feelsLike.textContent = `Feels like: ${data.currentConditions.feelslike}°C`;
+  humidity.textContent = `Humidity: ${data.currentConditions.humidity}%`;
+  wind.textContent = `Wind: ${data.currentConditions.windspeed} km/h`;
 }
 
 async function getLocationWeather(data) {
