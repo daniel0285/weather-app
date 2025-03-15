@@ -1,21 +1,11 @@
 import './styles.scss';
 
-document.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const location = getFormData(e.target);
-  const data = await getLocationWeather(location);
-  displayData(data);
+const convertToCelsius = function convertToCelsius(fahrenheit) {
+  const celsius = (fahrenheit - 32) * (5 / 9);
+  return celsius.toFixed(2);
+};
 
-  e.target.reset();
-});
-
-function getFormData(target) {
-  const form = new FormData(target);
-  const data = Object.fromEntries(form);
-  return data;
-}
-
-function displayData(data) {
+const displayData = function displayData(data) {
   const weatherInfo = document.querySelector('.weather-info');
   const description = document.getElementById('description');
   const locationName = document.getElementById('locationName');
@@ -28,7 +18,7 @@ function displayData(data) {
   const feelsLikeData = convertToCelsius(data.currentConditions.feelslike);
   const addressArr = data.resolvedAddress.split(',');
   const city = addressArr[0];
-  const country = `, ${addressArr[addressArr.length - 1]}` && ' ';
+  const country = `, ${addressArr[addressArr.length - 1]}` || ' ';
 
   weatherInfo.classList.remove('hidden');
   weatherInfo.classList.add('show');
@@ -38,16 +28,15 @@ function displayData(data) {
   feelsLike.textContent = `FEELS LIKE: ${feelsLikeData} °C`;
   humidity.textContent = `HUMIDITY: ${data.currentConditions.humidity}%`;
   wind.textContent = `WIND: ${data.currentConditions.windspeed} km/h`;
+};
 
-  console.log(country);
-}
+const getFormData = function getFormData(target) {
+  const form = new FormData(target);
+  const data = Object.fromEntries(form);
+  return data;
+};
 
-function convertToCelsius(fahrenheit) {
-  const celsius = (fahrenheit - 32) * (5 / 9);
-  return celsius.toFixed(2);
-}
-
-async function getLocationWeather(data) {
+const getLocationWeather = async function getLocationWeather(data) {
   const location = data.location;
 
   try {
@@ -63,4 +52,14 @@ async function getLocationWeather(data) {
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+const formHandler = async function formHandler(e) {
+  e.preventDefault();
+  const location = getFormData(e.target);
+  const data = await getLocationWeather(location);
+  displayData(data);
+  e.target.reset();
+};
+
+document.addEventListener('submit', formHandler);
