@@ -16,30 +16,35 @@ function getFormData(target) {
 }
 
 function displayData(data) {
+  const weatherInfo = document.querySelector('.weather-info');
+  const description = document.getElementById('description');
   const locationName = document.getElementById('locationName');
   const temperature = document.getElementById('temperature');
   const feelsLike = document.getElementById('feelsLike');
   const humidity = document.getElementById('humidity');
   const wind = document.getElementById('wind');
 
-  const tempData = convertToCelcius(data.currentConditions.temp);
-  const feelsLikeData = convertToCelcius(data.currentConditions.feelslike);
+  const tempData = convertToCelsius(data.currentConditions.temp);
+  const feelsLikeData = convertToCelsius(data.currentConditions.feelslike);
+  const addressArr = data.resolvedAddress.split(',');
+  const city = addressArr[0];
+  const country = `, ${addressArr[addressArr.length - 1]}` && ' ';
 
-  locationName.textContent = data.address;
-  temperature.textContent = `Temperature: ${tempData}°C`;
-  feelsLike.textContent = `Feels like: ${feelsLikeData}°C`;
-  humidity.textContent = `Humidity: ${data.currentConditions.humidity}%`;
-  wind.textContent = `Wind: ${data.currentConditions.windspeed} km/h`;
+  weatherInfo.classList.remove('hidden');
+  weatherInfo.classList.add('show');
+  description.textContent = data.currentConditions.conditions.toUpperCase();
+  locationName.textContent = `${city}${country}`.toUpperCase();
+  temperature.textContent = `${tempData} °C`;
+  feelsLike.textContent = `FEELS LIKE: ${feelsLikeData} °C`;
+  humidity.textContent = `HUMIDITY: ${data.currentConditions.humidity}%`;
+  wind.textContent = `WIND: ${data.currentConditions.windspeed} km/h`;
+
+  console.log(country);
 }
 
-function convertToCelcius(fahrenheit) {
-  const celcius = (fahrenheit - 32) * (5 / 9);
-  return celcius.toFixed(2);
-}
-
-function convertToFahrenheit(celcius) {
-  const fahrenheit = celcius * (9 / 5) + 32;
-  return fahrenheit.toFixed(2);
+function convertToCelsius(fahrenheit) {
+  const celsius = (fahrenheit - 32) * (5 / 9);
+  return celsius.toFixed(2);
 }
 
 async function getLocationWeather(data) {
@@ -59,17 +64,3 @@ async function getLocationWeather(data) {
     console.log(error);
   }
 }
-
-const days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-];
-
-// const day = new Date('2025-03-19').getDay();
-// console.log(days[day - 1]);
-// test

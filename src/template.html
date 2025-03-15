@@ -16,15 +16,16 @@
             <form action="" id="userInput">
                 <div class="input-field">
                     <label for="location">Location</label>
-                    <input type="search" name="location" id="location">
+                    <input type="text" name="location" id="location">
                 </div>
                 <input type="submit" value="Get Weather">
             </form>
         </section>
-        <section class="weather-info">
+        <section class="weather-info hidden">
+            <h3 id="description"></h3>
             <h2 id="locationName"></h2>
-            <p id="temperature"></p>
-            <p id="feelsLike"></p>
+            <p id="temperature" class="temp"></p>
+            <p id="feelsLike" class="temp"></p>
             <p id="humidity"></p>
             <p id="wind"></p>
         </section>
