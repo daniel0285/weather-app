@@ -36,9 +36,7 @@ const getFormData = function getFormData(target) {
   return data;
 };
 
-const getLocationWeather = async function getLocationWeather(data) {
-  const location = data.location;
-
+const getLocationWeather = async function getLocationWeather(location) {
   try {
     const request = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=74UJFHRYWB4AU3J34EKZQSS84`,
@@ -56,10 +54,15 @@ const getLocationWeather = async function getLocationWeather(data) {
 
 const formHandler = async function formHandler(e) {
   e.preventDefault();
-  const location = getFormData(e.target);
-  const data = await getLocationWeather(location);
+  const response = getFormData(e.target);
+  const data = await getLocationWeather(response.location);
   displayData(data);
   e.target.reset();
 };
 
 document.addEventListener('submit', formHandler);
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const data = await getLocationWeather('Manila');
+  displayData(data);
+});
