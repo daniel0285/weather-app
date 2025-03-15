@@ -22,11 +22,24 @@ function displayData(data) {
   const humidity = document.getElementById('humidity');
   const wind = document.getElementById('wind');
 
+  const tempData = convertToCelcius(data.currentConditions.temp);
+  const feelsLikeData = convertToCelcius(data.currentConditions.feelslike);
+
   locationName.textContent = data.address;
-  temperature.textContent = `Temperature: ${data.currentConditions.temp}°C`;
-  feelsLike.textContent = `Feels like: ${data.currentConditions.feelslike}°C`;
+  temperature.textContent = `Temperature: ${tempData}°C`;
+  feelsLike.textContent = `Feels like: ${feelsLikeData}°C`;
   humidity.textContent = `Humidity: ${data.currentConditions.humidity}%`;
   wind.textContent = `Wind: ${data.currentConditions.windspeed} km/h`;
+}
+
+function convertToCelcius(fahrenheit) {
+  const celcius = (fahrenheit - 32) * (5 / 9);
+  return celcius.toFixed(2);
+}
+
+function convertToFahrenheit(celcius) {
+  const fahrenheit = celcius * (9 / 5) + 32;
+  return fahrenheit.toFixed(2);
 }
 
 async function getLocationWeather(data) {
@@ -35,6 +48,9 @@ async function getLocationWeather(data) {
   try {
     const request = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=74UJFHRYWB4AU3J34EKZQSS84`,
+      {
+        mode: 'cors',
+      },
     );
     const weatherData = await request.json();
     console.log(weatherData);
