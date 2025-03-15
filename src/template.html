@@ -18,10 +18,11 @@
                     <label for="location">Location</label>
                     <input type="text" name="location" id="location" required>
                 </div>
-                <input type="submit" value="Get Weather">
+                <input type="submit" value="Search">
             </form>
         </section>
-        <section class="weather-info hidden">
+        <p id="load" class="hidden">Loading weather data...</p>
+        <section class="weather-info">
             <h3 id="description"></h3>
             <h2 id="locationName"></h2>
             <p id="temperature" class="temp"></p>
