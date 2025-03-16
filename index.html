@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+<script defer src="index.js"></script></head>
+
+<body>
+    <header>
+        <h1>Weather App</h1>
+    </header>
+    <main>
+        <section>
+            <form action="" id="userInput">
+                <div class="input-field">
+                    <input type="text" name="location" id="location" placeholder="Enter city name..."
+                        aria-placeholder="Enter city name" required>
+                </div>
+                <input type="submit" value="Search">
+            </form>
+        </section>
+        <p id="load" class="hidden">Loading weather data...</p>
+        <section class="weather-info show-info">
+            <div class="main-details">
+                <p id="description"></p>
+                <h2 id="locationName"></h2>
+                <p id="temperature" class="temp"></p>
+            </div>
+            <div class="other-details">
+                <p id="feelsLike" class="temp"></p>
+                <p id="humidity"></p>
+                <p id="wind"></p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
