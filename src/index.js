@@ -24,7 +24,7 @@ const displayData = function displayData(data) {
   // weatherInfo.classList.add('show');
   description.textContent = data.currentConditions.conditions.toUpperCase();
   locationName.textContent = data.address.toUpperCase();
-  temperature.textContent = `${tempData} °C`;
+  temperature.textContent = `${tempData}`;
   feelsLike.textContent = `FEELS LIKE: ${feelsLikeData} °C`;
   humidity.textContent = `HUMIDITY: ${data.currentConditions.humidity}%`;
   wind.textContent = `WIND: ${data.currentConditions.windspeed} km/h`;
@@ -68,5 +68,6 @@ document.addEventListener('submit', formHandler);
 
 document.addEventListener('DOMContentLoaded', async () => {
   const data = await getLocationWeather('Manila');
+  weatherInfo.classList.replace('hidden', 'show-info');
   displayData(data);
 });
