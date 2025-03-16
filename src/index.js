@@ -1,5 +1,4 @@
 import './styles.scss';
-
 const loading = document.getElementById('load');
 const weatherInfo = document.querySelector('.weather-info');
 weatherInfo.classList.add('hidden');
