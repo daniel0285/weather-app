@@ -20,8 +20,8 @@ const displayData = function displayData(data) {
   const tempData = convertToCelsius(data.currentConditions.temp);
   const feelsLikeData = convertToCelsius(data.currentConditions.feelslike);
 
-  weatherInfo.classList.remove('hidden');
-  weatherInfo.classList.add('show');
+  // weatherInfo.classList.remove('hidden');
+  // weatherInfo.classList.add('show');
   description.textContent = data.currentConditions.conditions.toUpperCase();
   locationName.textContent = data.address.toUpperCase();
   temperature.textContent = `${tempData} °C`;
@@ -55,11 +55,11 @@ const getLocationWeather = async function getLocationWeather(location) {
 const formHandler = async function formHandler(e) {
   e.preventDefault();
   loading.classList.replace('hidden', 'show');
-  weatherInfo.classList.replace('show', 'hidden');
+  weatherInfo.classList.replace('show-info', 'hidden');
   const response = getFormData(e.target);
   const data = await getLocationWeather(response.location);
   loading.classList.replace('show', 'hidden');
-  weatherInfo.classList.replace('hidden', 'show');
+  weatherInfo.classList.replace('hidden', 'show-info');
   displayData(data);
   e.target.reset();
 };

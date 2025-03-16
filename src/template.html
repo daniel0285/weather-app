@@ -15,14 +15,14 @@
         <section>
             <form action="" id="userInput">
                 <div class="input-field">
-                    <label for="location">Location</label>
-                    <input type="text" name="location" id="location" required>
+                    <input type="text" name="location" id="location" placeholder="Enter city name..."
+                        aria-placeholder="Enter city name" required>
                 </div>
                 <input type="submit" value="Search">
             </form>
         </section>
         <p id="load" class="hidden">Loading weather data...</p>
-        <section class="weather-info">
+        <section class="weather-info show-info">
             <h3 id="description"></h3>
             <h2 id="locationName"></h2>
             <p id="temperature" class="temp"></p>
@@ -31,8 +31,6 @@
             <p id="wind"></p>
         </section>
     </main>
-    <footer>
-    </footer>
 </body>
 
 </html>
