@@ -37,4 +37,3 @@ _(Add a screenshot or a demo link if available)_
    ```sh
    git clone https://github.com/daniel0285/weather-app.git
    ```
-2. Open `index.html` in a browser or use a live server extension.
