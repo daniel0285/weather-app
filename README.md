@@ -27,10 +27,6 @@ The app fetches weather data from [Visual Crossing](https://www.visualcrossing.c
 - Displays temperature, humidity, and weather conditions
 - Responsive design for mobile and desktop
 
-## 📸 Preview
-
-_(Add a screenshot or a demo link if available)_
-
 ## 📥 Installation & Usage
 
 1. Clone the repository:
